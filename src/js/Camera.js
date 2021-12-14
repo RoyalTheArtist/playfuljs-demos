@@ -96,4 +96,11 @@ function Camera(canvas, resolution, focalLength) {
     }; 
   };
 
+  Camera.prototype.resize = function() {
+    this.width = canvas.width = window.innerWidth * 0.5;
+    this.height = canvas.height = window.innerHeight * 0.5;
+    this.spacing = this.width / resolution;
+    this.scale = (this.width + this.height) / 1200;
+  }
+
   export default Camera

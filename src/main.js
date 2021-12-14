@@ -46,3 +46,7 @@ loop.start(seconds => {
     camera.render(player, map);
     minimap.render(player, map)
 });
+
+window.onresize = () => {
+    console.log("Window resized!")
+}
