@@ -96,7 +96,7 @@ function Map(size) {
 
   Map.prototype.update = function(seconds) {
     // Handles the lightning effect
-    if (this.light > 1) this.light = Math.max(this.light - 9 * seconds, 1);
+    if (this.light > 0) this.light = Math.max(this.light - 9 * seconds, 0);
     else if (Math.random() * 5 < seconds) { 
         console.log("lighting crash")
         this.light = 2; }
