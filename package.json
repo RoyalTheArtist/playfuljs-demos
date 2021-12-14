@@ -1,0 +1,26 @@
+{
+  "name": "playfuljs-demos",
+  "version": "1.0.0",
+  "description": "This is a fork of the [PlayfulJS](https://github.com/hunterloftis/playfuljs-demos) demos by [Hunter Loftis](https://github.com/hunterloftis/)",
+  "private": "true",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoyalTheArtist/playfuljs-demos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoyalTheArtist/playfuljs-demos/issues"
+  },
+  "homepage": "https://github.com/RoyalTheArtist/playfuljs-demos#readme"
+}
