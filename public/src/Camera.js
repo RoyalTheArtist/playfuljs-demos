@@ -56,7 +56,6 @@ function Camera(canvas, resolution, focalLength) {
 
   Camera.prototype.drawColumn = function(column, ray, angle, map) {
     var ctx = this.ctx;
-    let texture = map.wallTexture;
     var left = Math.floor(column * this.spacing);
     var width = Math.ceil(this.spacing);
     var hit = -1;
@@ -64,7 +63,7 @@ function Camera(canvas, resolution, focalLength) {
     while (++hit < ray.length && ray[hit].height <= 0);
 
     for (var s = ray.length - 1; s >= 0; s--) {
-      texture = ray[s].texture ? ray[s].texture : map.wallTexture
+      let texture = ray[s].texture ? ray[s].texture : map.wallTexture
       var step = ray[s];
       var rainDrops = Math.pow(Math.random(), 3) * s;
       var rain = (rainDrops > 0) && this.project(0.1, angle, step.distance);

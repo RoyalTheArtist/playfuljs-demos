@@ -1,8 +1,11 @@
-To extend a PlayfulJS demo, just fork this repository.
-If you make something cool,
-[email](mailto:hunter@hunterloftis.com) or [tweet](http://twitter.com/hunterloftis)
-me a link so I can announce it from playfuljs.com!
+## Welcome
 
-Once you fork this repo and push to your own gh-pages branch,
-your work will be accessible at a url like
-http://yourusername.github.io/playfuljs-demos/raycaster
+This is a fork of the [PlayfulJS](https://github.com/hunterloftis/playfuljs-demos) demos by [Hunter Loftis](https://github.com/hunterloftis/)
+
+## Roadmap
+
+Right now this is about learning to work with a raycaster engine and build out more functionality
+
+1. Build out ability to texture different parts of the world
+2. Add ability to have entities in world (stationary or active)
+3. Alter lighting and skybox
