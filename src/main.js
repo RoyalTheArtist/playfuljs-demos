@@ -36,7 +36,7 @@ var map = new Map(32);
 var controls = new Controls();
 var camera = new Camera(display, MOBILE ? 160 : 320, .8);
 var loop = new GameLoop();
-let minimap = new MiniMap(display, map, 5)
+let minimap = new MiniMap(display, map, MOBILE ? 1: 5)
 
 map.randomize();
 
@@ -48,5 +48,5 @@ loop.start(seconds => {
 });
 
 window.onresize = () => {
-    console.log("Window resized!")
+    camera.resize()
 }
