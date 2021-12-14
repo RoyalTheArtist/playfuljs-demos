@@ -10,12 +10,12 @@ function WorldObject(type, height, texture = null) {
   this.type = type
   this.height = height
   if(texture)
-    this.texture = new Bitmap(texture, 1024, 1024)
+    this.texture = texture
 }
 
 const TEXTURES = {
-  "concrete": 'assets/wall_texture.jpg',
-  "brick": "assets/brick_wall.jpg"
+  "concrete": new Bitmap('assets/wall_texture.jpg', 1024, 1024),
+  "brick": new Bitmap("assets/brick_wall_2.jpg", 1024, 1024)
 }
 
 const outOfBounds = new WorldObject(WORLD_TYPES.NULL, -1)
@@ -36,7 +36,8 @@ function Map(size) {
   };
 
   Map.prototype.randomize = function() {
-    for (var i = 0; i < this.size * this.size; i++) {
+    this.wallGrid[0] = new WorldObject(WORLD_TYPES.FLOOR, 0)
+    for (let i = 1; i < this.size * this.size; i++) {
       let randomType = Math.random()
       let object
       if (randomType < 0.3) {
