@@ -25,7 +25,7 @@ function Map(size) {
     this.wallGrid = new Array(size * size);
     this.skybox = new Bitmap('assets/deathvalley_panorama.jpg', 2000, 750);
     this.wallTexture = new Bitmap('assets/wall_texture.jpg', 1024, 1024);
-    this.light = 1;
+    this.light = 0;
   }
 
   Map.prototype.get = function(x, y) {
