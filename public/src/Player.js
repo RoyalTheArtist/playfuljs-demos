@@ -15,8 +15,11 @@ function Player(x, y, direction) {
   Player.prototype.walk = function(distance, map) {
     var dx = Math.cos(this.direction) * distance;
     var dy = Math.sin(this.direction) * distance;
-    if (map.get(this.x + dx, this.y) <= 0) this.x += dx;
-    if (map.get(this.x, this.y + dy) <= 0) this.y += dy;
+    let objX = map.get(this.x + dx, this.y)
+    let objY = map.get(this.x, this.y + dy)
+
+    if (objX.height <= 0) this.x += dx;
+    if (objY.height <= 0) this.y += dy;
     this.paces += distance;
   };
 

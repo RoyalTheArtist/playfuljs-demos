@@ -1,8 +1,28 @@
 import Bitmap from './Bitmap.js'
 
+const WORLD_TYPES = {
+  WALL: "wall",
+  FLOOR: "floor",
+  NULL: "null"
+}
+
+function WorldObject(type, height, texture = null) {
+  this.type = type
+  this.height = height
+  if(texture)
+    this.texture = new Bitmap(texture, 1024, 1024)
+}
+
+const TEXTURES = {
+  "concrete": 'assets/wall_texture.jpg',
+  "brick": "assets/brick_wall.jpg"
+}
+
+const outOfBounds = new WorldObject(WORLD_TYPES.NULL, -1)
+
 function Map(size) {
     this.size = size;
-    this.wallGrid = new Uint8Array(size * size);
+    this.wallGrid = new Array(size * size);
     this.skybox = new Bitmap('assets/deathvalley_panorama.jpg', 2000, 750);
     this.wallTexture = new Bitmap('assets/wall_texture.jpg', 1024, 1024);
     this.light = 1;
@@ -11,13 +31,21 @@ function Map(size) {
   Map.prototype.get = function(x, y) {
     x = Math.floor(x);
     y = Math.floor(y);
-    if (x < 0 || x > this.size - 1 || y < 0 || y > this.size - 1) return -1;
+    if (x < 0 || x > this.size - 1 || y < 0 || y > this.size - 1) return outOfBounds;
     return this.wallGrid[y * this.size + x];
   };
 
   Map.prototype.randomize = function() {
     for (var i = 0; i < this.size * this.size; i++) {
-      this.wallGrid[i] = Math.random() < 0.3 ? 1 : 0;
+      let randomType = Math.random()
+      let object
+      if (randomType < 0.3) {
+        let texture = Math.random() < 0.5 ? TEXTURES.concrete : TEXTURES.brick
+        object = new WorldObject(WORLD_TYPES.WALL, 1, texture)
+      } else {
+        object = new WorldObject(WORLD_TYPES.FLOOR, 0)
+      }
+      this.wallGrid[i] = object;
     }
   };
 
@@ -54,7 +82,9 @@ function Map(size) {
     function inspect(step, shiftX, shiftY, distance, offset) {
       var dx = cos < 0 ? shiftX : 0;
       var dy = sin < 0 ? shiftY : 0;
-      step.height = self.get(step.x - dx, step.y - dy);
+      let object = self.get(step.x - dx, step.y - dy);
+      step.height = object.height
+      step.texture = object.texture
       step.distance = distance + Math.sqrt(step.length2);
       if (shiftX) step.shading = cos < 0 ? 2 : 0;
       else step.shading = sin < 0 ? 2 : 1;
